@@ -362,12 +362,6 @@ if(interactive()){
           multiple = TRUE,
           color = "#ef5350"
         ),
-        # date picker -------------------------------------------------------------
-        material_date_picker(
-          input_id = "example_date_picker",
-          label = "Date picker",
-          color = 'purple'
-        ),
         # file input --------------------------------------------------------------
         material_file_input(
           input_id = "example_file_input",
@@ -443,13 +437,7 @@ if(interactive()){
         material_checkbox(input_id = "update_checkbox_test",
                         label = "checkbox",
                         initial_value = FALSE),
-        plotOutput('testCheckboxPlot'),
-        
-        material_button(input_id = "update_date_picker_test_button",
-                        label = "update date_picker"),
-        material_date_picker(input_id = "update_date_picker_test",
-                          label = "date_picker"),
-        plotOutput('testDatePickerPlot')
+        plotOutput('testCheckboxPlot')
       )
     )
   
@@ -597,9 +585,7 @@ if(interactive()){
     observeEvent(input$example_dropdown1, {
       message(input$example_dropdown1)
     })
-    observeEvent(input$example_date_picker, {
-      message(input$example_date_picker)
-    })
+    
     observe({
       if (input$update_button_test_switch)
         update_material_button(session, "update_button_test", "Active", "cloud", FALSE)
@@ -718,20 +704,7 @@ if(interactive()){
     
     
     
-    # Update date picker ---------------------------------
-    observeEvent(input$update_date_picker_test_button, {
-
-      update_material_date_picker(session,
-                               input_id = "update_date_picker_test",
-                               value = "2010-06-11")
-
-    })
     
-    output$testDatePickerPlot <- renderPlot({
-      message(input$update_date_picker_test)
-      # message(typeof(input$update_checkbox_test))
-      plot(1:10, main = input$update_date_picker_test)
-    })
     
     
     observeEvent(input$example_file_input, {
